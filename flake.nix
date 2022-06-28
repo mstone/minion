@@ -13,7 +13,7 @@
     systems = utils.lib.defaultSystems;
     overlay = final: prev: {
       minion = with final; rec {
-        minion = stdenv.mkDerivation {
+        minion = (if stdenv.isLinux then gcc10Stdenv else stdenv).mkDerivation {
           pname = "minion";
           version = "2.0.0-rc1";
           src = self;
